@@ -1,6 +1,7 @@
 <template>
     <main>
-        <router-view></router-view>
+        <!-- La key serve ad aggiornare e cambiare sempre l'url mantenendo la medesima rotta' -->
+        <router-view :key="$route.path"></router-view>
     </main>
 </template>
 
