@@ -10,8 +10,11 @@ class PostController extends Controller
 {
     public function index(){
 
-    $posts = Post::all();
+    //$posts = Post::all();
     //$posts_filtered = Post::where("category_id",1)->get();
+    
+    $posts = Post::with(["category", "tags"])->get();
+
     return response()->json($posts);
 
     }
