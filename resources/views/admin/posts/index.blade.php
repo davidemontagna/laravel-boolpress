@@ -31,7 +31,7 @@
 
                     <tr>          
                         <th scope="row">{{$post->id}}</th>
-                        <td>{{$post->title}}</td>
+                        <td>{{$post->title}} ({{ count($post->comments) }})</td>
                         <td>{{$post->content}}</td>
                         <td>{{$post->slug}}</td>
                         <td>{{$post->category ? $post->category->name : "-"}}</td>

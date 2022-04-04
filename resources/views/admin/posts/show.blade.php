@@ -27,6 +27,40 @@
                             </li>
                                                    
                         </ul>
+                        @if (count($post->comments) > 0)
+                        <div class="mt-3" id="comments">
+                            <h3>Comments</h3>
+                            <table class="table">
+                                <tbody>
+                                    @foreach ($post->comments as $comment)
+                                        <tr>
+                                            <td>{{$comment->content}}</td>
+                                            <td>
+                                                @if(!$comment->approved)
+                                                <form action="{{route('admin.comments.update', $comment->id)}}" method="POST">
+                                                    @csrf
+                                                    @method("PATCH")
+                                                    <button type="submit" class="btn btn-info">Approve</button>
+                                                </form>
+                                                @else 
+                                                    Approvato
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{route('admin.comments.destroy', $comment->id)}}" method="POST">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+
+
                         <div class="card-body">
                             <a href="{{route("admin.posts.index")}}" class="card-link"><button type="button" class="btn btn-info">Back to table</button></a>
                         

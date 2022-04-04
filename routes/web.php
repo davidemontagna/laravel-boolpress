@@ -20,6 +20,8 @@ Auth::routes();
 Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function(){
         Route::get('/', 'HomeController@index')->name('home');
         Route::resource('/posts', 'PostController');
+        Route::patch("comments/{comment}", "CommentController@update")->name("comments.update");
+        Route::delete("comments/{comment}", "CommentController@destroy")->name("comments.destroy");
     });
 
 
